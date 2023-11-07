@@ -1,0 +1,81 @@
+// * {
+//   outline: 1px solid black;
+// }
+.container {
+  margin: 0 auto;
+  max-width: 1110px !important;
+}
+.main {
+  margin: 120px auto 100px auto;
+  width: 920px;
+  padding: 60px 95px;
+}
+.main-style {
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 12px;
+}
+// .outline{
+//   outline: 1px solid black;
+// }
+//文字字種
+.fw-med {
+  font-weight: 500;
+}
+//間距
+.pr-6 {
+  padding-right: 6px;
+}
+.pr-15 {
+  padding-right: 15px !important;
+}
+.pl-15 {
+  padding-left: 15px !important;
+}
+.ml-30 {
+  margin-left: 30px;
+}
+.pb-22{
+  padding-bottom: 22px;
+}
+.img-size {
+  width: 350px !important;
+}
+
+.material-symbols-outlined {
+  margin-right: 6px;
+  color: $primary;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+.border-3-bottom {
+  width: 350px;
+  border-bottom: 3px solid $primary;
+}
+.border-2-bottom {
+  width: 310px;
+  border-bottom: 2px solid #007572;
+}
+.inputBox-bg {
+  width: 255px;
+  background: #fafafa;
+  border-radius: 0px;
+  border-bottom: 1px solid $primary;
+  padding: 8px 12px;
+}
+
+.bg-gray-1 {
+  background: #f7f7f7;
+}
+.card-list {
+  padding-top: 56px;
+}
+.filter-area {
+  margin-left: 95px;
+}
+.w-length {
+  width: 255px;
+}
+.select-style {
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
