@@ -173,7 +173,7 @@ function addData() {
     data.push(obj);
     if (!isValidUrl(inputUrl.value)) {
         // 如果輸入的URL無效，設定為指定的圖片位址
-        obj.imgUrl = "/assets/images/no_found.png"; // 替換為您的指定圖片位址
+        obj.imgUrl = "../images/no_found.png"; // 替換為您的指定圖片位址
     } else {
         obj.imgUrl = inputUrl.value;
     }
