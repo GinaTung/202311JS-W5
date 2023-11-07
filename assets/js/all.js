@@ -41,43 +41,46 @@ const filterArea = document.querySelector(".filter-area");
 const filterData = document.querySelector(".filter-data");
 // console.log(cardList);
 function init() {
-  let str = "";
-  data.forEach(function (item, index) {
-    let formattedPrice = item.price.toLocaleString();
-    str += `
-        <div class="card">
-        <div class="card-section">
-          <span class="tag bg-secondary text-white">${item.area}</span>
-          <img src="${item.imgUrl}" class="card-img-top" alt="${item.area}圖示">
-          <span class="tag2 bg-primary text-white">${item.rate}</span>
+    let str = "";
+    let count = 0;
+    data.forEach(function (item, index) {
+      let formattedPrice = item.price.toLocaleString();
+      str += `
+        <div class="card g-4">
+          <div class="card-section">
+            <span class="tag bg-secondary text-white">${item.area}</span>
+            <img src="${item.imgUrl}" class="card-img-top" alt="${item.area}圖示">
+            <span class="tag2 bg-primary text-white">${item.rate}</span>
+          </div>
+          <div class="card-body pb-14-cb h-100">
+            <h5 class="fs-3 border-2-bottom pb-1 text-primary fw-med mb-0">${item.name}</h5>
+            <p class="card-text pt-4 pb-22 text-light">
+              ${item.description}
+            </p>
+            <ul class="p-0 m-0 d-flex justify-content-between align-items-center">
+              <li class="d-flex text-primary">
+                <span class="material-symbols-outlined">
+                  error
+                </span>
+                <p class="fw-med">剩下最後${item.group}組</p>
+              </li>
+              <li class="d-flex text-primary align-items-center justify-content-center">
+                <span class="me-1 fw-med">TWD</span>
+                <p class="fs-2 font-Roboto fw-med">$${formattedPrice}</p>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="card-body pb-14-cb h-100">
-          <h5 class="fs-3 border-2-bottom pb-1 text-primary fw-med mb-0">${item.name}</h5>
-          <p class="card-text pt-4 pb-22 text-light">
-            ${item.description}
-          </p>
-          <ul class="p-0 m-0 d-flex justify-content-between align-items-center">
-            <li class="d-flex text-primary">
-              <span class="material-symbols-outlined">
-                error
-              </span>
-              <p class="fw-med">剩下最後${item.group}組</p>
-            </li>
-            <li class="d-flex text-primary align-items-center justify-content-center">
-              <span class="me-1 fw-med">TWD</span>
-              <p class="fs-2 font-Roboto fw-med">$${formattedPrice}</p>
-            </li>
-          </ul>
-        </div>
-      </div>
-        `;
-    filterData.textContent = `本次搜尋共 ${data.length}筆資料`;
-  });
-  cardList.innerHTML = str;
-}
+      `;
+      count += 1;
+    });
+    filterData.textContent = `本次搜尋共 ${count} 筆資料`;
+    cardList.innerHTML = str;
+  }
+    
 init();
 
-filterArea.addEventListener("click", function (e) {
+filterArea.addEventListener("change", function (e) {
   e.preventDefault();
   if (e.target.value == "") {
     console.log("你點擊到空的地方");
@@ -86,9 +89,9 @@ filterArea.addEventListener("click", function (e) {
   let count = 0;
   data.forEach(function (item, index) {
     let formattedPrice = item.price.toLocaleString();
-    if (e.target.value == item.area) {
+    if (e.target.value == item.area || e.target.value == "全部") {
       str += `
-            <div class="card">
+            <div class="card g-4">
             <div class="card-section">
               <span class="tag bg-secondary text-white">${item.area}</span>
               <img src="${item.imgUrl}" class="card-img-top" alt="${item.area}圖示">
@@ -115,40 +118,13 @@ filterArea.addEventListener("click", function (e) {
           </div>
             `;
       count += 1;
-      filterData.textContent = `本次搜尋共 ${count}筆資料`;
-    } else if (e.target.value == "全部") {
-      str += `
-        <div class="card">
-        <div class="card-section">
-          <span class="tag bg-secondary text-white">${item.area}</span>
-          <img src="${item.imgUrl}" class="card-img-top" alt="${item.area}圖示">
-          <span class="tag2 bg-primary text-white">${item.rate}</span>
-        </div>
-        <div class="card-body pb-14-cb h-100">
-          <h5 class="fs-3 border-2-bottom pb-1 text-primary fw-med mb-0">${item.name}</h5>
-          <p class="card-text pt-4 pb-22 text-light">
-            ${item.description}
-          </p>
-          <ul class="p-0 m-0 d-flex justify-content-between align-items-center">
-            <li class="d-flex text-primary">
-              <span class="material-symbols-outlined">
-                error
-              </span>
-              <p class="fw-med">剩下最後${item.group}組</p>
-            </li>
-            <li class="d-flex text-primary align-items-center justify-content-center">
-              <span class="me-1 fw-med">TWD</span>
-              <p class="fs-2 font-Roboto fw-med">$${formattedPrice}</p>
-            </li>
-          </ul>
-        </div>
-      </div>
-        `;
-      filterData.textContent = `本次搜尋共 ${data.length}筆資料`;
-    }
+      
+    } 
   });
+  filterData.textContent = `本次搜尋共 ${count}筆資料`;
   cardList.innerHTML = str;
 });
+//判斷網址是否為真網址
 function isValidUrl(url) {
     try {
         new URL(url);
@@ -179,9 +155,11 @@ function addData() {
       inputDescription.value == ""
     ) {
       alert("請填寫欄位");
+      return
     }
     if(inputStar.value>10 || inputStar.value<1){
         alert("請填寫套票星級1-10");
+        return
     }
     let obj = {};
     obj.id = data.length;
