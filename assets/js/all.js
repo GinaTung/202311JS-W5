@@ -40,7 +40,6 @@ let data = [
 const cardList = document.querySelector(".card-list");
 const filterArea = document.querySelector(".filter-area");
 const filterData = document.querySelector(".filter-data");
-// console.log(cardList);
 function init() {
     let str = "";
     let count = 0;
@@ -142,13 +141,9 @@ const inputSet = document.querySelector("#inputSet");
 const inputStar = document.querySelector("#inputStar");
 const inputDescription = document.querySelector("#inputDescription");
 const addBtn = document.querySelector("#addBtn");
-const imgUrl2 = "/assets/images/no_found.png";
 
-
-// console.log(addBtn);
 function addData() {
   addBtn.addEventListener("click", function (e) {
-    // console.log(data);
     if (
       inputName.value == "" ||
       inputUrl.value == "" ||
@@ -165,6 +160,10 @@ function addData() {
         alert("請填寫套票星級1-10");
         return
     }
+    if(inputPrice.value<1 || inputSet.value<1){
+      alert("請填寫數值為正數");
+      return
+  }
     let obj = {};
     obj.id = data.length;
     obj.name = inputName.value;
