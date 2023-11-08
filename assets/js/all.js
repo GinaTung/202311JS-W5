@@ -1,3 +1,4 @@
+import errorImg from "../images/no_found.png";
 let data = [
   {
     id: 0,
@@ -141,10 +142,13 @@ const inputSet = document.querySelector("#inputSet");
 const inputStar = document.querySelector("#inputStar");
 const inputDescription = document.querySelector("#inputDescription");
 const addBtn = document.querySelector("#addBtn");
-console.log(addBtn);
+const imgUrl2 = "/assets/images/no_found.png";
+
+
+// console.log(addBtn);
 function addData() {
   addBtn.addEventListener("click", function (e) {
-    console.log(data);
+    // console.log(data);
     if (
       inputName.value == "" ||
       inputUrl.value == "" ||
@@ -173,7 +177,7 @@ function addData() {
     data.push(obj);
     if (!isValidUrl(inputUrl.value)) {
         // 如果輸入的URL無效，設定為指定的圖片位址
-        obj.imgUrl = "../assets/images/no_found.png"; // 替換為您的指定圖片位址
+        obj.imgUrl = errorImg; // 替換為您的指定圖片位址
     } else {
         obj.imgUrl = inputUrl.value;
     }
